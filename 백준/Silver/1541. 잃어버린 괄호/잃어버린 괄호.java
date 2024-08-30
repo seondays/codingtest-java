@@ -2,22 +2,22 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.StringTokenizer;
 
 public class Main {
 
-  public static void main(String[] args) throws IOException {
-    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    String line = br.readLine();
-    String[] lineArray = line.split("-");
-    int[] lineInt = new int[lineArray.length];
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String target = br.readLine();
+        String[] splitMinus = target.split("-");
+        int[] result = new int[splitMinus.length];
 
-    for (int i = 0; i < lineArray.length; i++) {
-      String[] addArray = lineArray[i].split("\\+");
-      int buffer = Arrays.stream(addArray).mapToInt(Integer::parseInt).sum();
-      lineInt[i] = buffer;
+        for (int i = 0; i < splitMinus.length; i++) {
+            String[] splitPlus = splitMinus[i].split("\\+");
+            int sum = Arrays.stream(splitPlus).mapToInt(Integer::parseInt).sum();
+            result[i] = sum;
+        }
+
+        System.out.println(Arrays.stream(result).reduce((a,b) -> a - b).getAsInt());
     }
-
-    int result = Arrays.stream(lineInt).reduce((a, b) -> a - b).getAsInt();
-    System.out.println(result);
-  }
 }
