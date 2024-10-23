@@ -27,11 +27,14 @@ public class Main {
         Collections.sort(country);
 
         int rank = 1;
+        int tie = 1;
+        
         for (int i = 0; i < n; i++) {
             if (i > 0 && country.get(i).compareTo(country.get(i - 1)) == 0) {
-                country.get(i).rank = rank - 1;
+                country.get(i).rank = tie;
             } else {
                 country.get(i).rank = rank;
+                tie = rank;
             }
 
             rank++;
